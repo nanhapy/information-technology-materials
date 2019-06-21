@@ -9,11 +9,16 @@ int main()
         i = n / 100;
         j = n / 10 % 10;
         k = n % 10;
-        if (i * 100 + j * 10 + k == i * i * i + j * j * j + k * k * k)
+        if (intEquel(i * 100 + j * 10 + k, i * i * i + j * j * j + k * k * k))
         {
             printf("%-5d", n);
         }
     }
 
     return 0;
+}
+
+int intEquel(int a, int b)
+{
+    return a == b;
 }

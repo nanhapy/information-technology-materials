@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${fileDirname}\\.dist\\${fileBasenameNoExtension}.exe",
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": true,
