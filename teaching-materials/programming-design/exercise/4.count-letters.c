@@ -3,7 +3,7 @@ main()
 {
     int let, dig, other, c;
     let = dig = other = 0;
-    while ((c = getchar()) != '\n')
+    while ((c = getchar()) != '\n') // char ''
         if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))
             ++let;
         else if ('0' <= c && c <= '9')

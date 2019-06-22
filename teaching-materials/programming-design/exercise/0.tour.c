@@ -27,7 +27,8 @@ enum days
 
 // 引用头文件需要使用 #include
 #include <stdlib.h>
-#include <stdio.h>
+#include <stdio.h> // printf scanf getchar
+#include <math.h>  // sqrt exp log
 #include <string.h>
 
 // <>中的文件名来自于C标准库的头文件
@@ -62,6 +63,7 @@ int main(int argc, char **argv)
   short x_short = 0;
 
   // 字符型 1 byte
+  // ascii
   char x_char = 0;
   char y_char = 'y'; // 字符常量使用''
 
@@ -115,8 +117,8 @@ int main(int argc, char **argv)
 
   // 字符串是字符的数组，以NULL/0x00/\0字符结束
   // 双引号""
-  char a_string[20] = "This is a string";
-  printf("%s\n", a_string); // %s formats a string
+  char a_string[20] = "This is a string"; //{'T','h','i','s'....}
+  printf("%s\n", a_string);               // %s formats a string
 
   printf("%d\n", a_string[16]); // => 0
   // i.e., byte #17 is 0 (as are 18, 19, and 20)
@@ -155,7 +157,7 @@ int main(int argc, char **argv)
   f1 / f2;         // => 0.5,
 
   // 取模
-  11 % 3; // => 2
+  11 % 3; // => 2 // mod
 
   //关系运算符
   // C语言没有布尔值
@@ -168,7 +170,7 @@ int main(int argc, char **argv)
   2 <= 2; // => 1
   2 >= 2; // => 1
 
-  // 不存在链式关系运算
+  // 不存在链式关系运算 python
   // 下面的表达式不会有编译错误，他被理解成 `(0 < a) < 2`.
   // 这个表达式恒为1（ture），
   // 因为(0 < a) 可能是0或者1 ，且0或者1恒小于2
@@ -192,12 +194,14 @@ int main(int argc, char **argv)
 
   // 累加、累减操作符
   int j = 0;
-  int s = j++; // 先返回 j 然后自增 j. (s = 0, j = 1)
-  s = ++j;     // 先自增 j,然后返回 j. (s = 2, j = 2)
+  int s += j++; // 先返回 j 然后自增 j. (s = 0, j = 1)
+  // int s += j; j = j+1;
+  s += ++j; // 先自增 j,然后返回 j. (s = 2, j = 2)
+  // j = j +1; s += j;
   // j-- and --j 同理
 
   // 位运算符
-  ~0x0F;       // => 0xFFFFFFF0 按位取反
+  ~0x0000000F; // => 0xFFFFFFF0 按位取反
   0x0F & 0xF0; // => 0x00 按位与
   0x0F | 0xF0; // => 0xFF 按位或
   0x04 ^ 0x0F; // => 0x0B 按位异或 同为0，异为1
@@ -228,6 +232,14 @@ int main(int argc, char **argv)
     printf("%d, ", ii++); // ii++ increments ii AFTER using its current value.
   }                       // => prints "0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "
 
+  while (1)
+  {
+    if (ii >= 10)
+    {
+      break;
+    }
+  }
+
   printf("\n");
 
   int kk = 0;
@@ -241,7 +253,7 @@ int main(int argc, char **argv)
 
   // For循环
   int jj;
-  for (jj = 0; jj < 10; jj++)
+  for (; jj < 10; jj++)
   {
     printf("%d, ", jj);
   } // => prints "0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "
@@ -258,10 +270,24 @@ int main(int argc, char **argv)
   for (i = 0; i <= 5; i++)
     ;
 
+  for (i = 0; i < 5; i++)
+  {
+    for (int j = 0; j < 6; j++)
+    {
+      if (i == 2 && j == 3)
+      {
+        ;
+      }
+      else
+      {
+        ;
+      }
+    }
+  }
   // swtich分支结构
   switch (a)
   {
-  case 0: // 需要常量表达式，如emun
+  case 0: // 需要常量表达式，如emun else if
     printf("Hey, 'a' equals 0!\n");
     break; // 如果不加break,语句将继续执行
   case 1:
@@ -269,6 +295,7 @@ int main(int argc, char **argv)
     break;
     // 语句将继续执行，直到遇到下一个break
   case 3:
+      printf("Look at that.. 'a' is either 3, or 4\n");
   case 4:
     printf("Look at that.. 'a' is either 3, or 4\n");
     break;
@@ -304,8 +331,8 @@ int main(int argc, char **argv)
   printf("%f\n", (float)100);  // ...even with a float.
   printf("%d\n", (char)100.0);
 
-//Special characters:
-/*
+  //Special characters:
+  /*
 '\a'; // alert (bell) character
 '\n'; // newline character
 '\t'; // tab character (left justifies text)
@@ -330,31 +357,31 @@ int main(int argc, char **argv)
 "%ld";   // long
 "%3.2f"; // minimum 3 digits left and 2 digits right decimal float
 "%c";    // char
-"%x";    // hexadecimal
+"%x";    // hexadecimal 0xFF,0x11
 "%o";    // octal
 "%%";    // prints %
 */
 
-///////////////////////////////////////
-// Order of Evaluation
-///////////////////////////////////////
+  ///////////////////////////////////////
+  // Order of Evaluation
+  ///////////////////////////////////////
 
-//---------------------------------------------------//
-//        Operators                  | Associativity //
-//---------------------------------------------------//
-// () [] -> .                        | left to right //
-// ! ~ ++ -- + = *(type)sizeof       | right to left //
-// * / %                             | left to right //
-// + -                               | left to right //
-// << >>                             | left to right //
-// < <= > >=                         | left to right //
-// == !=                             | left to right //
-// &                                 | left to right //
-// ^                                 | left to right //
-// |                                 | left to right //
-// &&                                | left to right //
-// ||                                | left to right //
-// ?:                                | right to left //
-// = += -= *= /= %= &= ^= |= <<= >>= | right to left //
-// ,                                 | left to right //
-//---------------------------------------------------//
+  //---------------------------------------------------//
+  //        Operators                  | Associativity //
+  //---------------------------------------------------//
+  // () [] -> .                        | left to right //
+  // ! ~ ++ -- + = *(type)sizeof       | right to left //
+  // * / %                             | left to right //
+  // + -                               | left to right //
+  // << >>                             | left to right //
+  // < <= > >=                         | left to right //
+  // == !=                             | left to right //
+  // &                                 | left to right //
+  // ^                                 | left to right //
+  // |                                 | left to right //
+  // &&                                | left to right //
+  // ||                                | left to right //
+  // ?:                                | right to left //
+  // = += -= *= /= %= &= ^= |= <<= >>= | right to left //
+  // ,                                 | left to right //
+  //---------------------------------------------------//

@@ -17,7 +17,7 @@ int main(int argc, char const *argv[])
 
         if (d != 0)
         {
-            // sum = sum + d;
+            // sum = sum + d; //1/r
             // c = c + 1; // 自增1
 
             if (d > 0)
@@ -41,7 +41,7 @@ int main(int argc, char const *argv[])
     // }
     // else
     // {
-    //     float a = (float)sum / c; // 除以计数器
+    //     float a = (float)sum / c; // 除以计数器 1/rs
 
     //     printf("%f", a);
     // }
