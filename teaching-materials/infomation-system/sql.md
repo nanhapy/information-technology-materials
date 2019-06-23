@@ -25,7 +25,8 @@ Sage DATE
 CREATE TABLE Course
 ( Cno CHAR(5) PRIMARY KEY,
 Cname VARCHAR(10),
-Tno CHAR(3)
+Tno CHAR(3),
+FOREIGN KEY (Tno) REFERENCES Teacher(Tno)
 )
 --表（三）Score(成绩表)
 CREATE TABLE SC
@@ -42,6 +43,32 @@ CREATE TABLE Teacher
 ( Tno CHAR(3) PRIMARY KEY,
 Tname CHAR(8),
 )
+```
+
+```sql
+select 2019 - sage as age ,sage as birth,2019 as now from teacher where tno = 't01'
+
+select * from sc where cno = 'c01' and score not between 60 and 75
+-- score >= 60 and score <=75
+
+select * from sc --where cno = 'c01' --and score not between 60 and 75
+order by sno asc, score desc
+李老师
+
+查询和小一学习同一门课的学生学号
+
+每个学生的选课数量 sno, count
+select sno, count(distinct cno)
+from sc
+group by sno
+
+所有课的数量
+select count(*) from course
+
+学了全部课程的学生的学号
+
+学了程序设计或数据库的学生的学号
+
 ```
 
 ## 数据查询
@@ -607,3 +634,85 @@ Tname CHAR(8),
    ```sql
    DELETE FROM Sc WHERE Sno='001'AND Cno='001';
    ```
+
+```sql
+INSERT INTO "student" ("sno", "sname", "ssex", "sbirthday")
+VALUES ('1', '小一', '男', '1995-1-1');
+INSERT INTO "student" ("sno", "sname", "ssex", "sbirthday")
+VALUES ('2', '小二', '男', '1995-2-1');
+INSERT INTO "student" ("sno", "sname", "ssex", "sbirthday")
+VALUES ('3', '小仨', '男', '1995-3-1');
+INSERT INTO "student" ("sno", "sname", "ssex", "sbirthday")
+VALUES ('4', '小四', '女', '1995-4-1');
+INSERT INTO "student" ("sno", "sname", "ssex", "sbirthday")
+VALUES ('5', '小五', '女', '1995-5-1');
+INSERT INTO "student" ("sno", "sname", "ssex", "sbirthday")
+VALUES ('6', '小六', '女', '1995-6-1');
+
+
+INSERT INTO "teacher" ("tno", "tname")
+VALUES ('t01', '张老师');
+INSERT INTO "teacher" ("tno", "tname")
+VALUES ('t02', '李老师');
+INSERT INTO "teacher" ("tno", "tname")
+VALUES ('t03', '王老师');
+INSERT INTO "teacher" ("tno", "tname")
+VALUES ('t04', '孙老师');
+INSERT INTO "teacher" ("tno", "tname")
+VALUES ('t05', '吴老师');
+
+INSERT INTO "course" ("cno", "cname", "tno")
+VALUES ('c01', '程序设计', 't01');
+INSERT INTO "course" ("cno", "cname", "tno")
+VALUES ('c02', '数据库', 't01');
+INSERT INTO "course" ("cno", "cname", "tno")
+VALUES ('c03', '计算机网路', 't02');
+INSERT INTO "course" ("cno", "cname", "tno")
+VALUES ('c04', '多媒体', 't03');
+
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s01  ', 'c01', '61');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s01  ', 'c02', '62');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s01  ', 'c03', '63');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s01  ', 'c04', '64');
+
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s02  ', 'c01', '71');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s02  ', 'c02', '72');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s02  ', 'c03', '73');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s02  ', 'c04', '74');
+
+
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s03  ', 'c01', '81');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s03  ', 'c02', '82');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s03  ', 'c03', '83');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s03  ', 'c04', '84');
+
+
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s04  ', 'c01', '91');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s04  ', 'c03', '93');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s04  ', 'c04', '94');
+
+
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s05  ', 'c01', '91');
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s05  ', 'c03', '93');
+
+
+INSERT INTO "sc" ("sno", "cno", "score")
+VALUES ('s06  ', 'c01', '100');
+```
