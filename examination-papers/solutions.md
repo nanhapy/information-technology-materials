@@ -60,7 +60,7 @@
    - GIF(Graphics Interchange Format) 图像互换格式，是 CompuServe 公司在 1987 年开发的图像文件格式。GIF 文件的数据，是一种基于 LZW 算法的连续色调的无损压缩格式。其压缩率一般在 50%左右，它不属于任何应用程序。GIF 格式可以存多幅彩色图像，如果把存于一个文件中的多幅图像数据逐幅读出并显示到屏幕上，就可构成一种最简单的动画。
    - PCX(PC Paintbrush Exchange) ZSoft 公司的 PC Paintbrush 软件的文件格式。已经被其他更复杂的图像格式如 GIF、JPEG、PNG 渐渐取代
 
-9. B
+9. A
 
 10. A
 
