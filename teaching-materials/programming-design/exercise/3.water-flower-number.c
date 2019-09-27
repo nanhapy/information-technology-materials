@@ -9,10 +9,10 @@ int main()
     int i, j, k, n;
     for (n = 100; n < 1000; n++)
     {
-        i = n / 100; //335 / 100 = 3 
-        j = n / 10 % 10;  335 / 10 = 33; 33 % 10 = 3
+        i = n / 100;
+        j = n / 10 % 10;
         k = n % 10;
-        if (n == i * i * i + j * j * j + k * k * k)
+        if (intEquel(i * 100 + j * 10 + k, i * i * i + j * j * j + k * k * k))
         {
             printf("%-5d", n);
         }
