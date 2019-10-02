@@ -2,6 +2,8 @@ public class Cylinder {
 
     private Circle circle;
 
+    private double height;
+
     public Circle getCircle() {
         return circle;
     }
@@ -21,7 +23,5 @@ public class Cylinder {
     public double getVolume() {
         return this.height * this.circle.getArea();
     }
-
-    private double height;
 
 }

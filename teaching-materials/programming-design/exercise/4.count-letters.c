@@ -1,7 +1,8 @@
 #include <stdio.h>
 main()
 {
-    int let, dig, other, c;
+    int let, dig, other;
+    char c;
     let = dig = other = 0;
     while ((c = getchar()) != '\n') // char ''
         if (('A' <= c && c <= 'Z') || ('a' <= c && c <= 'z'))

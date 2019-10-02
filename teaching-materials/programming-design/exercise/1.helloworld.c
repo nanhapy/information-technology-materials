@@ -3,6 +3,10 @@ int main()
 {
    // printf("Hello,\n World!");
 
+   char a_string[20] = "This is a string";
+
+   char my_array[20] = {0};
+
    int i = 0;
    char c = '0';
    char x_char = 0;
