@@ -12,7 +12,7 @@ void swap(int *a, int *b)
 void bubbleSort(int arr[], int size)
 {
     int count = 0;
-    for (int i = 1; i < size - 1; i++)
+    for (int i = 1; i <= size - 1; i++)
     {
         for (int j = size - 1; j >= i; j--)
         {
@@ -28,17 +28,22 @@ void bubbleSort(int arr[], int size)
     }
 }
 
+void bs(int arr[], int size)
+{
+    // printArray(arr, size);
+}
+
 void selectionSort(int arr[], int size)
 {
     for (int i = 0; i < size - 1; i++)
     {
-        int min = arr[i];
+        // int min = arr[i];
         int min_pos = i;
         for (int j = i + 1; j <= size - 1; j++)
         {
-            if (arr[j] < min)
+            if (arr[j] < arr[min_pos])
             {
-                min = arr[j];
+                // min = arr[j];
                 min_pos = j;
             }
         }
@@ -86,9 +91,20 @@ void quickSort(int arr[], int low, int high)
 
 int main()
 {
-    int arr[] = {8, 7, 5, 3, 6, 9, 1, 2};
+    //int arr[] = {8, 7, 5, 3, 6, 9, 1, 2};
 
-    int size = sizeof(arr) / sizeof(int);
+    //int size = sizeof(arr) / sizeof(int);
+
+    for (int i = 0; i < size; i++)
+    {
+        scanf("%d", &arr[i]);
+    }
+
+    ;
+
+    // int size = arr.length;
+
+    // int size = 6;
 
     printArray(arr, size);
 
