@@ -55,8 +55,6 @@ select * from sc --where cno = 'c01' --and score not between 60 and 75
 order by sno asc, score desc
 李老师
 
-查询和小一学习同一门课的学生学号
-
 每个学生的选课数量 sno, count
 select sno, count(distinct cno)
 from sc
@@ -67,8 +65,102 @@ select count(*) from course
 
 学了全部课程的学生的学号
 
+select Sname from studentf
+
+where Sno IN
+
+(select Sno from SC
+
+group by Sno //根据Sno分组，统计每个学生选修了几门课程。如果等于course的总数，就是我们要找的Sno
+
+having count(*) = (select count(*) from course ))    //统计course中共有几门课程
+
 学了程序设计或数据库的学生的学号
 
+查询没有被选过的课程
+select *
+from course
+where not exists (select * from sc where course.cno = cno)
+
+查询s06没选的课
+select *
+from course
+where not exists (select * from sc where sno = 's06' and course.cno = cno)
+
+查询选了所有课的学生
+select *
+from student
+where not exists(
+select *
+from course
+where not exists (select * from sc where student.sno = sno and course.cno = cno)
+)
+
+查询一门没学的学生
+select *
+from student
+where not exists (select * from sc where student.sno = sno)
+
+查询学了至少一门的学生
+select *
+from student
+where exists (select * from sc where student.sno = sno)
+
+查询和s05学习同一门课的学生学号
+select *
+from student,sc
+where cno in (select cno from sc where sno = 's05')
+and student.sno = sc.sno
+
+查询小二学了哪门课
+
+查询和s02学习的课完全相同的学生
+
+SELECT Sno
+   FROM SC
+   WHERE Cno IN ( SELECT Cno
+   FROM SC
+   WHERE Sno = '1002' )
+   GROUP BY Sno
+   HAVING COUNT(*) = ( SELECT COUNT(*)
+   FROM SC
+   WHERE Sno = '1002'
+   )
+
+SELECT *
+FROM student
+WHERE NOT exists
+    (SELECT *
+     FROM
+       (SELECT cno
+        FROM sc
+        WHERE sno = 's02') AS selected
+     WHERE NOT EXISTS
+         (SELECT *
+          FROM sc
+          WHERE student.sno = sno
+            AND selected.cno = cno) )
+  AND NOT EXISTS
+    (SELECT *
+     FROM
+       (SELECT *
+        FROM course
+        WHERE NOT EXISTS
+            (SELECT *
+             FROM sc
+             WHERE sno = 's02'
+               AND course.cno = cno)) AS unselected
+     WHERE EXISTS
+         (SELECT *
+          FROM sc
+          WHERE sno= student.sno
+            AND cno= unselected.cno ) )
+
+查询选了c01这门课的学生
+select *
+from student
+where exists (select * from sc where student.sno = sno and cno = 'c01')
+-- and exists (select * from sc where student.sno = sno and cno = 'c02')
 ```
 
 ## 数据查询
