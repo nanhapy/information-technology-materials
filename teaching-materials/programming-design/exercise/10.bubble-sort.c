@@ -12,11 +12,11 @@ void swap(int *a, int *b)
 void bubbleSort(int arr[], int size)
 {
     int count = 0;
-    for (int i = 1; i <= size - 1; i++)
+    for (int i = 0; i < size - 1; i++)
     {
-        for (int j = size - 1; j >= i; j--)
+        for (int j = 0; j < size - i - 1; j++)
         {
-            if (arr[j] < arr[j - 1])
+            if (arr[j] > arr[j + 1])
             {
                 int temp = arr[j];
                 arr[j] = arr[j - 1];
@@ -77,6 +77,82 @@ int partition(int arr[], int low, int high)
     arr[high] = arr[i + 1];
     arr[i + 1] = pivot;
     return i + 1;
+}
+
+// 交换
+int partition2(int[] arr, int low, int high)
+{
+    // 取第一个位置的元素作为基准元素
+    int pivot = arr[low];
+    int left = low;
+    int right = high;
+    while (left != right)
+    {
+        //控制right指针比较并左移
+        while (left < right && arr[right] > pivot)
+        {
+            right--;
+        }
+        //控制right指针比较并右移
+        while (left < right && arr[left] <= pivot)
+        {
+            left++;
+        }
+        //交换left和right指向的元素
+        if (left < right)
+        {
+            int p = arr[left];
+            arr[left] = arr[right];
+            arr[right] = p;
+        }
+    }
+
+    //pivot和指针重合点交换
+    int p = arr[left];
+    arr[left] = arr[low];
+    arr[low] = p;
+    return left;
+}
+
+// 挖坑
+int partition(int[] arr, int low, int high)
+{
+    // 取第一个位置的元素作为基准元素
+    int pivot = arr[low];
+    int left = low;
+    int right = high;
+    // 坑的位置，初始等于pivot的位置
+    int index = low;
+    //大循环在左右指针重合或者交错时结束
+    while (right >= left)
+    {
+        //right指针从右向左进行比较
+        while (right >= left)
+        {
+            if (arr[right] < pivot)
+            {
+                arr[left] = arr[right];
+                index = right;
+                left++;
+                break;
+            }
+            right--;
+        }
+        //left指针从左向右进行比较
+        while (right >= left)
+        {
+            if (arr[left] > pivot)
+            {
+                arr[right] = arr[left];
+                index = left;
+                right--;
+                break;
+            }
+            left++;
+        }
+    }
+    arr[index] = pivot;
+    return index;
 }
 
 void quickSort(int arr[], int low, int high)
