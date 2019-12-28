@@ -111,7 +111,7 @@ int main(int argc, char **argv)
   // 变长数组
   printf("Enter the array size: ");
   int array_size;
-  fscanf(stdin, "%d", &array_size);
+  scanf(stdin, "%d", &array_size);
   int var_length_array[array_size]; // declare the VLA
   printf("sizeof array = %zu\n", sizeof var_length_array);
 

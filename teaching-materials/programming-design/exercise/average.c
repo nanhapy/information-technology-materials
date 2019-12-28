@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
     int c1 = 0;
     int c2 = 0;
 
-    while (1)
+    for (;;)
     {
         scanf("%d", &d);
 

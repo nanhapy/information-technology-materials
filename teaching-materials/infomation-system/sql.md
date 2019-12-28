@@ -138,8 +138,8 @@ WHERE NOT exists
      WHERE NOT EXISTS
          (SELECT *
           FROM sc
-          WHERE student.sno = sno
-            AND selected.cno = cno) )
+          WHERE sno = student.sno
+            AND cno = selected.cno) )
   AND NOT EXISTS
     (SELECT *
      FROM
@@ -149,7 +149,7 @@ WHERE NOT exists
             (SELECT *
              FROM sc
              WHERE sno = 's02'
-               AND course.cno = cno)) AS unselected
+               AND cno = course.cno)) AS unselected
      WHERE EXISTS
          (SELECT *
           FROM sc

@@ -38,8 +38,4 @@ public class Ball {
         System.out.println("第10次反弹高度" + h / 2);
 
     }
-
-    public static double getDouble() {
-        return 22;
-    }
 }
