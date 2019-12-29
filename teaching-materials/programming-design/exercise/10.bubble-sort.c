@@ -80,7 +80,7 @@ int partition(int arr[], int low, int high)
 }
 
 // 交换
-int partition2(int[] arr, int low, int high)
+int partition2(int arr[], int low, int high)
 {
     // 取第一个位置的元素作为基准元素
     int pivot = arr[low];
@@ -115,7 +115,7 @@ int partition2(int[] arr, int low, int high)
 }
 
 // 挖坑
-int partition(int[] arr, int low, int high)
+int partition3(int arr[], int low, int high)
 {
     // 取第一个位置的元素作为基准元素
     int pivot = arr[low];
@@ -167,16 +167,28 @@ void quickSort(int arr[], int low, int high)
 
 int main()
 {
-    //int arr[] = {8, 7, 5, 3, 6, 9, 1, 2};
+    int arr[] = {8, 7, 5, 3, 6, 9, 1, 2};
 
-    //int size = sizeof(arr) / sizeof(int);
+    int size = sizeof(arr) / sizeof(int);
 
-    for (int i = 0; i < size; i++)
+    for (int i = size - 1; i >= 0; i--)
     {
-        scanf("%d", &arr[i]);
+        printf("%d", arr[i]);
     }
 
-    ;
+    getch();
+    // int size = 0;
+
+    // scanf("%d", &size);
+
+    // int arr[size];
+
+    // for (int i = 0; i < size; i++)
+    // {
+    //     scanf("%d", &arr[i]);
+    // }
+
+    // ;
 
     // int size = arr.length;
 
