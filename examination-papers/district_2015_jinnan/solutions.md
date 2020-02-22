@@ -339,10 +339,20 @@
 ## 编程题
 
 ```vb
-For n = 2 To 999
-	i = n * n
-	IF i mod 10 = n OR i mod 100 = n OR i mod 1000 = n Then
-		Sum = sum + n
-	Endif
-Next n
+Private Sub CommandButton3_Click()
+    Dim n As Double
+    Dim s As Double
+    Dim sum As Double
+    
+    For n = 2 To 999
+     s = n * n
+     If s Mod 10 = n Or s Mod 100 = n Or s Mod 1000 = n Then
+        sum = sum + n
+    End If
+     
+    Next n
+    
+    TextBox2.Text = Str(sum)
+
+End Sub
 ```
