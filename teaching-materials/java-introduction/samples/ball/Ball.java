@@ -7,12 +7,6 @@ public class Ball {
         Scanner input = new Scanner(System.in);
         // h记录球的初始高度
 
-        double p = 3.14;
-
-        System.out.println("圆柱的体积是:" + p);
-
-        // printf("圆柱的体积是%d：",d);
-
         double h = input.nextDouble();
 
         // up记录小球反弹的距离
