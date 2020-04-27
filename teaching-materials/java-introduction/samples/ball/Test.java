@@ -1,4 +1,3 @@
-
 /*
 (Compute the volume of a cylinder) Write a program that reads in the radius
 and length of a cylinder and computes the area and volume using the following
@@ -26,5 +25,6 @@ public class Test {
         // Display results
         System.out.println("The area is " + area);
         System.out.println("The volume is " + volume);
+        input.close();
     }
 }

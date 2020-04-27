@@ -19,5 +19,6 @@ class Main {
             v = sum / c;
         }
         System.out.println(v);
+        input.close();
     }
 }

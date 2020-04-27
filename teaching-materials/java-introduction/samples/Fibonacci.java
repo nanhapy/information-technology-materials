@@ -3,7 +3,7 @@ public class Fibonacci {
         int n = 12;
         int f1 = 1;
         int f2 = 1;// Fibonacci第一个和第二个数为1
-        int f3;// 接收新的Fibonacci数
+        int f3 = 0;// 接收新的Fibonacci数
 
         for (int i = 3; i <= n; i++) {// 输出多少个看自己需要
             f3 = f1 + f2;// 新的Fibonacci数

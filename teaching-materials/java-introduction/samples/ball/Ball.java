@@ -37,5 +37,6 @@ public class Ball {
 
         System.out.println("第10次反弹高度" + h / 2);
 
+        input.close();
     }
 }
