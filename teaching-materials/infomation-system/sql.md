@@ -82,6 +82,16 @@ select *
 from course
 where not exists (select * from sc where course.cno = cno)
 
+select * 
+from course ,sc
+where course.cno = sc.cno
+and sc.cno is null
+
+select *
+from course
+left join sc on course.cno = sc.cno
+where sc.cno is null
+
 查询s06没选的课
 select *
 from course
@@ -162,6 +172,53 @@ from student
 where exists (select * from sc where student.sno = sno and cno = 'c01')
 -- and exists (select * from sc where student.sno = sno and cno = 'c02')
 ```
+
+## 真题
+商品：P(pno,pname,price) 商品号，名称，价格
+售货员 S(sno,sname,ssex) 售货员号，姓名，性别
+销售记录 R(pno,sno,num) 商品号，售货员号，数量
+
+1. 每个销售员的销售额
+1. 售货员售出过的商品名称
+
+
+1=
+select distinct p.pno
+from p, r
+where p.pno = r.pno
+
+
+select *
+from p
+where exists (
+  selecr * from r where r.pno = p.pno
+)
+
+
+
+
+
+
+
+
+
+select *
+from p
+where exists (select * from r where p.pno = r.pno)
+
+select sno, sum(r.num * p.price)
+from s, r, p
+where r.pno = p.pno
+and s.sno = r.sno
+group by r.sno
+
+select sname, t.total
+from s
+left join
+(select sno, sum(r.num * p.price) as total
+from r, p
+where r.pno = p.pno
+group by r.sno) as t on s.sno = t.sno
 
 ## 数据查询
 

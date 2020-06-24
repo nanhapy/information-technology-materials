@@ -26,5 +26,6 @@ public class Volume1 {
         // Display results
         System.out.println("The area is " + area);
         System.out.println("The volume is " + volume);
+        input.close();
     }
 }

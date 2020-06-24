@@ -15,6 +15,7 @@ class Playground {
             max = c;
         }
 
-        System.out.println(d);
+        System.out.println(max);
+        input.close();
     }
 }
